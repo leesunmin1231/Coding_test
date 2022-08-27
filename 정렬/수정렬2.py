@@ -16,22 +16,20 @@ def bucket_sort(lst):
     term = (max_num - min_num) // (n-1)
     for num in lst:
         idx = (num - min_num) // term
-        print("idx: " , idx)
         if B[idx] != 0:
             B[idx].append(num)
         else:
             B[idx] = [num]
     for i in range(n):
         B[i].sort()
-    print(B)
     return B
-        
-N = int(input())
+
+import sys
+n = int(input())
 lst = []
-for i in range(N):
-    lst.append(int(input()))
-B = bucket_sort(lst)
-for data in B:
-    for num in data:
-        print(num)
+for _ in range(n):
+    lst.append(int(sys.stdin.readline()))
+lst.sort()
+for i in lst:
+    print(i)
 

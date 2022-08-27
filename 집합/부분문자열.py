@@ -17,7 +17,6 @@ s = input()
 lst = []
 for start in range(len(s)):
     for end in range(start+1, len(s)+1):
-        print(start, end)
         lst.append(s[start: end])
 s = list(set(lst))
 print(len(s))

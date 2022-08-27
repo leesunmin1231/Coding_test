@@ -14,7 +14,6 @@
 # 출력
 # 첫째 줄에 입력으로 주어진 M개의 수에 대해서, 
 # 각 수가 적힌 숫자 카드를 상근이가 가지고 있으면 1을, 아니면 0을 공백으로 구분해 출력한다.
-import bisect
 
 def bisearch(lst, n, first, last):
     cur = (first+last)//2

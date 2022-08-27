@@ -8,13 +8,11 @@
 # 출력
 # 첫째 줄부터 N개의 줄에 오름차순으로 정렬한 결과를 한 줄에 하나씩 출력한다.
 
-import heapq
 
-heap = []
 N = int(input())
-size = 0
+lst = []
 for i in range(N):
-    heapq.heappush(heap, int(input()))
-    size+=1
-for i in range(size):
-    print(heapq.heappop(heap))
+    lst.append(int(input()))
+lst.sort()
+for i in lst:
+    print(i)

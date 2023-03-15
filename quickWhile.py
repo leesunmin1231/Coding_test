@@ -11,13 +11,19 @@ def partition(arr, start, end):
     arr[i] = pivot
     return i
 
-def quick(arr, start, end):
-    if start >= end:
-        return
-    q = partition(arr, start, end)
-    quick(arr, start, q)
-    quick(arr, q + 1, end)
+def quick(arr):
+    stack = []
+    stack.append((0, len(arr)-1))
+    while len(stack) !=0:
+        start, end = stack.pop()
+        q = partition(arr, start, end)
+        if start >= end:
+            continue
+        stack.append((start, q))
+        stack.append((q+1, end))
+
+
 
 arr = [3,4,1,2,6,7,5]
-quick(arr,0,6)
+quick(arr)
 print(arr)

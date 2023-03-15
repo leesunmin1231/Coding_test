@@ -1,41 +1,29 @@
-def case1(query, total):
-    left = 0
-    for i in range(total//2):
-        left += query[i]
-    right = 0
-    startPoint = total//2
-    if (total % 2 == 1):
-        startPoint += 1
-    for i in range(startPoint, total):
-        right += query[i]
-    if abs(left - right) % 2 == 0:
-        return 0
-    else:
-        return 1
+def partition(arr, start, end):
+    i = start
+    pivot = arr[i]
+    for j in range(start+1, end+1):
+        if arr[j] <= pivot:
+            i += 1
+            tmp = arr[j]
+            arr[j] = arr[i]
+            arr[i] = tmp
+    arr[start] = arr[i]
+    arr[i] = pivot
+    return i
+def quickSort(arr, start, end):
+    if start >= end:
+        return
+    q = partition(arr, start, end)
+    quickSort(arr, start, q)
+    quickSort(arr, q+1, end)
 
-def case2(query, total):
-    left = 0
-    for i in range(total//2):
-        left += query[i]
-    right = 0
-    for i in range(total//2, total):
-        right += query[i]
-    if abs(left - right) % 2 == 0:
-        return 0
-    else:
-        return 1
-
-def solution(queries):
-    ans = []
-    for query in queries:
-        total = len(query)
-        if (total % 2 == 1):
-            if query[total//2] % 2 == 0:
-                ans.append(case1(query, total))
-            else:
-                ans.append(case2(query, total))
-        else:
-            ans.append(case1(query, total))
-    return ans
-
-print(solution([[0, 1, 1]]))
+def solution(array, commands):
+    answer = []
+    for cmd in commands:
+        splitArray = array[cmd[0]-1:cmd[1]]
+        quickSort(splitArray,0,cmd[1]-cmd[0])
+        answer.append(splitArray[cmd[2]-1])
+    return answer
+array = [1, 5, 2, 6, 3, 7, 4]
+commands = 	[[2, 5, 3], [4, 4, 1], [1, 7, 3]]
+solution(array, commands)

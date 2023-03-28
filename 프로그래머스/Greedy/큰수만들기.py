@@ -8,6 +8,9 @@ def solution(number, k):
                 k -= 1
             else:
                 break
+        if k == 0:
+            ans += (list(number)[i:])
+            break
         ans.append(number[i])
     if k > 0:
         return "".join(ans[:-1*k])

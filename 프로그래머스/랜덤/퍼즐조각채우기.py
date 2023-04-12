@@ -32,8 +32,7 @@ def bfs(start, table, visited):
             if visited[next[0]][next[1]] or not table[next[0]][next[1]]:
                 continue
             q.append(next)
-    cutShape = [row[minCol:maxCol+1] for row in shape]
-    cutShape = cutShape[minRow: maxRow+1]            
+    cutShape = [row[minCol:maxCol+1] for row in shape[minRow:maxRow + 1]]        
     shapes = [cutShape]
     # 회전시켜서 담기
     for _ in range(3):

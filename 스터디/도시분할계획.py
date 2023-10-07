@@ -1,35 +1,27 @@
 import sys
+import heapq
 
 input = sys.stdin.readline
 
 n, m = map(int, input().split(" "))
 
-edgeList = []
+graph = [[] for _ in range(n+1)]
+visited = [False for _ in range(n+1)]
 for _ in range(m):
     a,b,c = map(int,input().split(" "))
-    edgeList.append([a,b,c])
+    graph[a].append([c,b])
+    graph[b].append([c,a])
 
-edgeList.sort(key=lambda x: x[2])
-parent = [i for i in range(n+1)]
-
-def find(a):
-    if parent[a] == a:
-        return a
-    parent[a] = find(parent[a])
-    return parent[a]
-
-def union(a,b):
-    aRoot = find(a)
-    bRoot = find(b)
-    if bRoot < aRoot:
-        parent[aRoot] = bRoot
-    else:
-        parent[bRoot] = aRoot
-
+heap = [[0,1]]
 result = []
-for a,b,c in edgeList:
-    if find(a) != find(b):
-        union(a,b)
-        result.append(c)
-
-print(sum(result)-max(result))
+while heap:
+    price, node = heapq.heappop(heap)
+    if visited[node]:
+        continue
+    visited[node] = True
+    result.append(price)
+    if len(result) == n:
+        break
+    for next in graph[node]:
+        heapq.heappush(heap, next)
+print(sum(result) - max(result))

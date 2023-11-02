@@ -20,10 +20,8 @@ def find(a):
 def union(a,b):
     aRoot = find(a)
     bRoot = find(b)
-    if bRoot < aRoot:
+    if bRoot != aRoot:
         parent[aRoot] = bRoot
-    else:
-        parent[bRoot] = aRoot
 
 ans = 0
 for a,b,c in edgeList:

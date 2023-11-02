@@ -19,10 +19,9 @@ def find(target):
 def union(a, b):
     aRoot = find(a)
     bRoot = find(b)
-    if aRoot < bRoot:
+    if aRoot != bRoot:
         parent[bRoot] = aRoot
-    else:
-        parent[aRoot] = bRoot
+
 
 ans = 0
 for a,b,c in edgeList:
